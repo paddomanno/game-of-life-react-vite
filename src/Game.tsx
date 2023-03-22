@@ -180,7 +180,8 @@ function Game() {
   }
 
   return (
-    <div>
+    <main style={{ textAlign: 'center' }}>
+      <h1>Game of Life</h1>
       <div
         className="board"
         style={{
@@ -196,26 +197,43 @@ function Game() {
         ))}
       </div>
       <div className="controls">
-        <span>Update every</span>
-        <input
-          type="number"
-          value={gameInterval}
-          onChange={handleIntervalChange}
-        />
-        <span>msec</span>
-        {isRunning ? (
-          <button className="button" onClick={stopGame}>
-            Stop
-          </button>
-        ) : (
-          <button className="button" onClick={runGame}>
-            Run
-          </button>
-        )}
-        <button onClick={handleClickRandom}>random</button>
-        <button onClick={handleClickClear}>clear</button>
+        <div className="controls-item">
+          <p>
+            1. Click cells to set your own starting point, or use a
+            random one
+          </p>
+          <div>
+            <button onClick={handleClickRandom}>random</button>
+            <button onClick={handleClickClear}>clear</button>
+          </div>
+        </div>
+        <div className="controls-item">
+          <p>2. See what happens!</p>
+          {isRunning ? (
+            <button onClick={stopGame} className="big-button">
+              Stop
+            </button>
+          ) : (
+            <button onClick={runGame} className="big-button">
+              Run
+            </button>
+          )}
+        </div>
+        <div className="controls-item" style={{ flexBasis: '60%' }}>
+          <p>3. Fine tune the speed of the simulation</p>
+          <div>
+            <span>Update every</span>
+            <input
+              type="number"
+              value={gameInterval}
+              onChange={handleIntervalChange}
+              className="big-input"
+            />
+            <span>msec</span>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
 
